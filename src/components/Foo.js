@@ -14,12 +14,13 @@ class Foo extends Component {
     this.socket = io(`http://localhost:${this.port}`);
 
     this.state = {
-      cryptocurrencyData: []
+      cryptocurrencyData: [],
+      lastUpdated: '0'
     }
   }
 
   componentDidMount() { 
-    this.socket.on('get_cryptocurrency_data', () => {
+    this.socket.on('get_cryptocurrency_data', (lastUpdated) => {
       Meteor.call('getData', (error, response) => {
         if (error) {
           throw err;
@@ -28,7 +29,8 @@ class Foo extends Component {
         const data = response.data;
 
         this.setState({
-          cryptocurrencyData: data
+          cryptocurrencyData: data,
+          lastUpdated: lastUpdated
         });
 
         Meteor.call('cryptocurrencyData.insert', data);      
@@ -37,13 +39,14 @@ class Foo extends Component {
   }
 
   render() {
-    const { cryptocurrencyData } = this.state;
+    const { cryptocurrencyData, lastUpdated } = this.state;
 
     return (
       <div>
         {cryptocurrencyData.map((data, index) => (
           <Bar data = { data} key = { index } num = { index } />
         ))}
+        Updated: { lastUpdated }
       </div>
     );
   };

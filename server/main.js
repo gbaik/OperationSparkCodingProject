@@ -12,12 +12,13 @@ if (Meteor.isServer) {
   const io = socket_io.listen(server);
   
   io.on('connection', function(socket) {
-    function test() {
-      socket.emit('get_cryptocurrency_data'); 
+    const getCryptocurrencyData = function () {
+      let lastUpdated = new Date().toLocaleString();      
+      socket.emit('get_cryptocurrency_data', lastUpdated); 
     };
 
-    test();
-    setInterval(test, 300010);
+    getCryptocurrencyData();
+    setInterval(getCryptocurrencyData, 300010);
   });
 }
 
