@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -13,10 +14,16 @@ class Foo extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState({
-      cryptocurrencyData: exampleData
-    })
+  componentDidMount() {    
+    Meteor.call('getData', (error, response) => {
+      if (error) {
+        throw err;
+      }
+
+      this.setState({
+        cryptocurrencyData: response.data
+      });
+    });
   }
 
   render() {
