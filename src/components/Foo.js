@@ -1,8 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+// import { withTracker } from 'meteor/react-meteor-data';
 
 import Bar from './Bar.js';
+// import { CryptocurrencyData } from '../../server/main';
 import { exampleData } from '../data/example';
 
 class Foo extends Component { 
@@ -14,16 +16,22 @@ class Foo extends Component {
     }
   }
 
-  componentDidMount() {    
+  componentDidMount() { 
     Meteor.call('getData', (error, response) => {
       if (error) {
         throw err;
       }
 
+      const data = response.data;
+
       this.setState({
-        cryptocurrencyData: response.data
+        cryptocurrencyData: data
       });
+
+      Meteor.call('cryptocurrencyData.insert', data);      
     });
+
+    console.log('CryptocurrencyData:', this.props.cryptocurrencyData);
   }
 
   render() {
@@ -45,3 +53,9 @@ class Foo extends Component {
 }
 
 export default Foo;
+
+// export default withTracker(() => {
+//   return {
+//     cryptocurrencyData: CryptocurrencyData.find({}).fetch(),
+//   };
+// })(Foo);
