@@ -10,9 +10,10 @@ By: [Gideon Baik](https://github.com/gbaik) (gideonbaik@gmail.com)
 
 ## Instructions
   1. Clone locally using `git clone https://github.com/gbaik/OperationSparkCodingProject.git`
-  2. Install dependencies using npm install
-  3. Navigate to terminal and start server using `meteor`
-  4. Navigate to app in [browser](http://localhost:3000/)
+  2. Navigate to terminal and switch directory `cd OperationSparkCodingProject`
+  3. Install dependencies using `npm install`
+  4. Start server using `meteor`
+  5. Navigate to app in [browser](http://localhost:3000/)
 
 ## Requirements
 **1. Make recurring API call to CoinMarketCap from server**
