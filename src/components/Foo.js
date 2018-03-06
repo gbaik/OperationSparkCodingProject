@@ -1,37 +1,39 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-// import { withTracker } from 'meteor/react-meteor-data';
 
 import Bar from './Bar.js';
-// import { CryptocurrencyData } from '../../server/main';
 import { exampleData } from '../data/example';
+import io from 'socket.io-client';
 
 class Foo extends Component { 
   constructor(props) { 
     super(props);
     
+    this.port = process.env.port || 5000;
+    this.socket = io(`http://localhost:${this.port}`);
+
     this.state = {
       cryptocurrencyData: []
     }
   }
 
   componentDidMount() { 
-    Meteor.call('getData', (error, response) => {
-      if (error) {
-        throw err;
-      }
+    this.socket.on('get_cryptocurrency_data', () => {
+      Meteor.call('getData', (error, response) => {
+        if (error) {
+          throw err;
+        }
 
-      const data = response.data;
+        const data = response.data;
 
-      this.setState({
-        cryptocurrencyData: data
+        this.setState({
+          cryptocurrencyData: data
+        });
+
+        Meteor.call('cryptocurrencyData.insert', data);      
       });
-
-      Meteor.call('cryptocurrencyData.insert', data);      
     });
-
-    console.log('CryptocurrencyData:', this.props.cryptocurrencyData);
   }
 
   render() {
@@ -39,11 +41,6 @@ class Foo extends Component {
 
     return (
       <div>
-        <ul>
-          <li className = 'disabled'>
-            Test
-          </li>
-        </ul>
         {cryptocurrencyData.map((data, index) => (
           <Bar data = { data} key = { index } num = { index } />
         ))}
@@ -53,9 +50,3 @@ class Foo extends Component {
 }
 
 export default Foo;
-
-// export default withTracker(() => {
-//   return {
-//     cryptocurrencyData: CryptocurrencyData.find({}).fetch(),
-//   };
-// })(Foo);
