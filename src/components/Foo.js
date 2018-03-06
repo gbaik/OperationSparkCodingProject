@@ -24,8 +24,13 @@ class Foo extends Component {
 
     return (
       <div>
+        <ul>
+          <li className = 'disabled'>
+            Test
+          </li>
+        </ul>
         {cryptocurrencyData.map((data, index) => (
-          <Bar data = { data} key = { index } />
+          <Bar data = { data} key = { index } num = { index } />
         ))}
       </div>
     );

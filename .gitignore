@@ -1,5 +1,1 @@
-# Compiled Dirs 
-dist
-
-# Dependency directorys
-node_modules 
+node_modules/

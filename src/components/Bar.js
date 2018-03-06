@@ -1,7 +1,8 @@
 import React from 'react';
 
-const Bar = ({ data }) => (
+const Bar = ({ data, num }) => (
   <div>
+    { num }
     <div>
       Name: { data['name'] }
     </div>
