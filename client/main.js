@@ -2,8 +2,8 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 
-import Foo from '../src/components/Foo.js';
+import Display from '../src/components/Display.js';
 
 Meteor.startup(() => {
-  render(<Foo />, document.getElementById('root'));
+  render(<Display />, document.getElementById('root'));
 });

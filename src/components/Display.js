@@ -2,11 +2,11 @@ import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import Bar from './Bar.js';
+import List from './List.js';
 import { exampleData } from '../data/example';
 import io from 'socket.io-client';
 
-class Foo extends Component { 
+class Display extends Component { 
   constructor(props) { 
     super(props);
     
@@ -14,7 +14,7 @@ class Foo extends Component {
     this.socket = io(`http://localhost:${this.port}`);
 
     this.state = {
-      cryptocurrencyData: [],
+      cryptocurrencyData: exampleData,
       lastUpdated: '0'
     }
   }
@@ -44,7 +44,7 @@ class Foo extends Component {
     return (
       <div>
         {cryptocurrencyData.map((data, index) => (
-          <Bar data = { data} key = { index } num = { index } />
+          <List data = { data} key = { index } num = { index } />
         ))}
         Updated: { lastUpdated }
       </div>
@@ -52,4 +52,4 @@ class Foo extends Component {
   };
 }
 
-export default Foo;
+export default Display;
