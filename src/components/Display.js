@@ -73,9 +73,11 @@ class Display extends Component {
         </ul>
         Updated: { lastUpdated }        
         <ul>
+          { currentPage > 1 && <div onClick = {() => this.handlePageClick(currentPage - 1)}> prev </div> }
           {pageNumbers.map(number => (
-            <li onClick = {() => this.handlePageClick(number)  } key = { number }> { number } </li>
+            <li onClick = {() => this.handlePageClick(number) } key = { number }> { number } </li>
           ))}
+          { currentPage < pageNumbers.length && <div onClick = {() => this.handlePageClick(currentPage + 1)}> next </div> }
         </ul>
       </div>
     );
