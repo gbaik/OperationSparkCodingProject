@@ -12,7 +12,7 @@ const List = ({ data, num }) => (
       USD Price: { data['price_usd'] }
     </div>
     <div>
-      Quantity: { data['avaiable_supply'] } 
+      Quantity: { data['available_supply'] } 
     </div>
     <div>
       Market Cap USD: { data['market_cap_usd'] }
