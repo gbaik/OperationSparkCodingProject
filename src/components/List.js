@@ -22,7 +22,7 @@ const List = ({ currentPages }) => (
       <h3>Price (USD)</h3>
       {currentPages.map((data, index) => (
         <div key = { index }>
-          ${ data['price_usd'] }
+          ${ Number(data['price_usd']).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") }
         </div>
       ))}
     </div>
@@ -30,7 +30,9 @@ const List = ({ currentPages }) => (
       <h3>Quantity</h3>
       {currentPages.map((data, index) => (
         <div key = { index }>
-          { data['available_supply'] }
+          { Number(data['available_supply']).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") }
+          {' '}
+          { data['symbol'] }
         </div>
       ))}
     </div>
@@ -38,7 +40,7 @@ const List = ({ currentPages }) => (
       <h3>Market Cap (USD)</h3>
       {currentPages.map((data, index) => (
         <div key = { index }>
-          ${ data['market_cap_usd'] }
+          ${ Number(data['market_cap_usd']).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") }
         </div>
       ))}
     </div>
@@ -46,7 +48,7 @@ const List = ({ currentPages }) => (
       <h3>24hr Volume (USD)</h3>
       {currentPages.map((data, index) => (
         <div key = { index }>
-          ${ data['24h_volume_usd'] }
+          ${ Number(data['24h_volume_usd']).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') }
         </div>
       ))}
     </div>
