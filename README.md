@@ -32,13 +32,14 @@ By: [Gideon Baik](https://github.com/gbaik) (gideonbaik@gmail.com)
   - Every 5 minutes when the API is called from the sockets, the state is updated with the new data.
 
 ## Future Work
-- Clean up styling
 - Clean up what is stored into the database
 - Create API that the client calls to receive data instead of receiving directly from CoinMarketCap's API
 - Add more error handling on backend
 - Write tests
+- Make it responsive
 - Add visualizations using D3
 - Deploy
 - Optimize
+- Add more color
 
 
