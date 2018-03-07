@@ -3,6 +3,7 @@ By: [Gideon Baik](https://github.com/gbaik) (gideonbaik@gmail.com)
 
 ## Built With
 * HTML
+* CSS
 * React
 * Node
 * Meteor
