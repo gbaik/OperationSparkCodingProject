@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import List from './List.js';
 import { exampleData } from '../data/example';
 import io from 'socket.io-client';
+import Pagination from './Pagination.js';
 
 class Display extends Component { 
   constructor(props) { 
@@ -66,19 +67,15 @@ class Display extends Component {
         <div className = 'title'>
           <h1>Cryptocurrency Market</h1>
         </div>
-        <List currentPages = { currentPages }/>
-        <div className = 'nav_bar'>
-          <ul>
-            { currentPage > 1 && <div onClick = {() => this.handlePageClick(currentPage - 1)}> prev </div> }
-            {pageNumbers.map(number => (
-              <li onClick = {() => this.handlePageClick(number) } key = { number }> { number } </li>
-            ))}
-            { currentPage < pageNumbers.length && <div onClick = {() => this.handlePageClick(currentPage + 1)}> next </div> }
-          </ul>
-          <div className = 'last_updated'>
-            Updated: { lastUpdated }
-          </div>       
-        </div>
+        <List 
+          currentPages = { currentPages }
+        />
+        <Pagination 
+          currentPage = { currentPage }
+          handlePageClick = { this.handlePageClick }
+          lastUpdated = { lastUpdated }
+          pageNumbers = { pageNumbers }
+          />
       </div>
     );
   };

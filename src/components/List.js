@@ -5,7 +5,7 @@ const List = ({ currentPages }) => (
     <div>
       Name
       {currentPages.map((data, index) => (
-        <div>
+        <div key = { index }>
           { data['name'] }
         </div>
       ))}
@@ -13,7 +13,7 @@ const List = ({ currentPages }) => (
     <div>
       Id
       {currentPages.map((data, index) => (
-        <div>
+        <div key = { index }>
           { data['id'] }
         </div>
       ))}
@@ -21,7 +21,7 @@ const List = ({ currentPages }) => (
     <div>
       USD Price
       {currentPages.map((data, index) => (
-        <div>
+        <div key = { index }>
           { data['price_usd'] }
         </div>
       ))}
@@ -29,7 +29,7 @@ const List = ({ currentPages }) => (
     <div>
       Quantity
       {currentPages.map((data, index) => (
-        <div>
+        <div key = { index }>
           { data['available_supply'] }
         </div>
       ))}
@@ -37,7 +37,7 @@ const List = ({ currentPages }) => (
     <div>
       Market Cap USD
       {currentPages.map((data, index) => (
-        <div>
+        <div key = { index }>
           { data['market_cap_usd'] }
         </div>
       ))}
@@ -45,7 +45,7 @@ const List = ({ currentPages }) => (
     <div>
       24hr Volume USD
       {currentPages.map((data, index) => (
-        <div>
+        <div key = { index }>
           { data['24h_volume_usd'] }
         </div>
       ))}
