@@ -1,26 +1,55 @@
 import React from 'react';
 
-const List = ({ data, num }) => (
-  <div>
+const List = ({ currentPages }) => (
+  <div className = 'main_content'>
     <div>
-      Name: { data['name'] }
+      Name
+      {currentPages.map((data, index) => (
+        <div>
+          { data['name'] }
+        </div>
+      ))}
     </div>
     <div>
-      Id: { data['id'] }
+      Id
+      {currentPages.map((data, index) => (
+        <div>
+          { data['id'] }
+        </div>
+      ))}
     </div>
     <div>
-      USD Price: { data['price_usd'] }
+      USD Price
+      {currentPages.map((data, index) => (
+        <div>
+          { data['price_usd'] }
+        </div>
+      ))}
     </div>
     <div>
-      Quantity: { data['available_supply'] } 
+      Quantity
+      {currentPages.map((data, index) => (
+        <div>
+          { data['available_supply'] }
+        </div>
+      ))}
     </div>
     <div>
-      Market Cap USD: { data['market_cap_usd'] }
+      Market Cap USD
+      {currentPages.map((data, index) => (
+        <div>
+          { data['market_cap_usd'] }
+        </div>
+      ))}
     </div>
     <div>
-      24hr Volume USD: { data['24h_volume_usd'] } 
+      24hr Volume USD
+      {currentPages.map((data, index) => (
+        <div>
+          { data['24h_volume_usd'] }
+        </div>
+      ))}
     </div>
-    <hr />
   </div>
 );
 

@@ -1,6 +1,5 @@
 .display {
   display: grid;
-  grid-template-columns: 1fr;
   grid-template-rows: 175px 5fr 125px;
   grid-template-areas:
     " title "
@@ -12,13 +11,11 @@
   grid-area: title;
 }
 
-/* 
-.display > .column_header {
-  grid-area: column_header;
-} */
-
 .display > .main_content {
   grid-area: main_content;
+
+  display: flex;
+  flex-direction: row;
 }
 
 .display > .nav_bar {
@@ -27,7 +24,7 @@
   display: grid;
   grid-template-columns: 1fr 250px;
   grid-template-areas:
-    "nav_bar_pagination nav_bar_last_updated"
+    "nav_bar_ul nav_bar_last_updated"
 }
 
 .display > .nav_bar > .last_updated {
@@ -39,7 +36,7 @@
 }
 
 .display > .nav_bar > ul {
-  grid-area: nav_bar_pagination;
+  grid-area: nav_bar_ul;
   
   display: flex;
   flex-direction: row;
