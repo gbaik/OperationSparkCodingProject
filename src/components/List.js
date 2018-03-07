@@ -1,8 +1,7 @@
 import React from 'react';
 
-const Bar = ({ data, num }) => (
+const List = ({ data, num }) => (
   <div>
-    { num }
     <div>
       Name: { data['name'] }
     </div>
@@ -25,4 +24,4 @@ const Bar = ({ data, num }) => (
   </div>
 );
 
-export default Bar;
+export default List;

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import List from './List.js';
+import Pagination from './Pagination.js';
 import { exampleData } from '../data/example';
 import io from 'socket.io-client';
 
@@ -43,10 +44,11 @@ class Display extends Component {
 
     return (
       <div>
-        {cryptocurrencyData.map((data, index) => (
+        <Pagination />
+        {/* {cryptocurrencyData.map((data, index) => (
           <List data = { data} key = { index } num = { index } />
         ))}
-        Updated: { lastUpdated }
+        Updated: { lastUpdated } */}
       </div>
     );
   };
