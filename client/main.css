@@ -9,6 +9,10 @@
 
 .display > .title {
   grid-area: title;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .display > .main_content {
@@ -16,13 +20,19 @@
 
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.display > .main_content > div {
+  padding: 25px;
 }
 
 .display > .nav_bar {
   grid-area: nav_bar;
 
   display: grid;
-  grid-template-columns: 1fr 250px;
+  grid-template-columns: 1fr 200px;
   grid-template-areas:
     "nav_bar_ul nav_bar_last_updated"
 }
