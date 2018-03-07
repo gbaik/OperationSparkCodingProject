@@ -62,23 +62,29 @@ class Display extends Component {
     const currentPages = cryptocurrencyData.slice(indexOfFirstPage, indexOfLastPage);
 
     return (
-      <div>
-        <ul>
-          {currentPages.map((todo, index) => (
-            <List 
-              data = { todo } 
-              key = { index }
-            />
-          ))}
-        </ul>
-        Updated: { lastUpdated }        
-        <ul>
-          { currentPage > 1 && <div onClick = {() => this.handlePageClick(currentPage - 1)}> prev </div> }
-          {pageNumbers.map(number => (
-            <li onClick = {() => this.handlePageClick(number) } key = { number }> { number } </li>
-          ))}
-          { currentPage < pageNumbers.length && <div onClick = {() => this.handlePageClick(currentPage + 1)}> next </div> }
-        </ul>
+      <div className = 'display'>
+        <div className = 'title'>
+          <h1>Cryptocurrency Market</h1>
+        </div>
+        <div className = 'main_content'>
+          <ul>
+            {currentPages.map((todo, index) => (
+              <List data = { todo } key = { index } />
+            ))}
+          </ul>
+        </div>
+        <div className = 'nav_bar'>
+            <ul>
+              { currentPage > 1 && <div onClick = {() => this.handlePageClick(currentPage - 1)}> prev </div> }
+              {pageNumbers.map(number => (
+                <li onClick = {() => this.handlePageClick(number) } key = { number }> { number } </li>
+              ))}
+              { currentPage < pageNumbers.length && <div onClick = {() => this.handlePageClick(currentPage + 1)}> next </div> }
+            </ul>
+          <div className = 'last_updated'>
+            Updated: { lastUpdated }
+          </div>       
+        </div>
       </div>
     );
   };
