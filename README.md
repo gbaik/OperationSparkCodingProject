@@ -7,7 +7,6 @@ By: [Gideon Baik](https://github.com/gbaik) (gideonbaik@gmail.com)
 * React
 * Node
 * Meteor
-* <span>Socket.IO</span>
 
 ## Instructions
   1. Clone locally using `git clone https://github.com/gbaik/OperationSparkCodingProject.git`
@@ -18,23 +17,22 @@ By: [Gideon Baik](https://github.com/gbaik) (gideonbaik@gmail.com)
 
 ## Requirements
 **1. Make recurring API call to CoinMarketCap from server**
-  - Using <span>socket.io</span>, an event is, roughly, emitted every 5 minutes to receive the most updated data from CoinMarketCap's API.
+  - Using Meteor's publications and subscriptions methods, roughly, every 5 minutes the Display component's props which is contained using Meteor's withTracker receives the most updated data from CoinMarketCap's API.
 
 **2. Save resulting data to local Mongo database**
-  - Every 5 minutes when the API is called from the sockets, it invokes the meteor method cryptocurrencyData.insert which inserts the data into the MongoDB.
+  - Using Meteor's publications and subscriptions methods alongside setInterval, roughly, every 5 minutes the CoinMarketCap's API is inserted into the MongoDB.
 
-**3. Send info from database to client using Meteor publication/subscription**
-  - Normally I would make a seperate API route that the client can call that would query the database and return the data. Due to the time constraints, I decided to just insert the data into the database and return the CoinMarketCap's API data directly to the client. 
+**3. Send info from the database to client using Meteor publication/subscription**
+  - Meteor's withTracker alongside publications and subscriptions methods keeps track of any updating data in the database and updates it live. 
 
-**4. Client should display current currency prices as a list**
+**3. Client should display current currency prices as a list**
   - The data received is iterated through and sent to another component that renders the items in a list.
 
-**5. Client list prices should update reactively**
-  - Every 5 minutes when the API is called from the sockets, the state is updated with the new data.
+**4. Client list prices should update reactively**
+  - Every 5 minutes when the CoinMarketCap's API is called from the Meteor's publications and subscriptions methods, the props are updated with the new data through the Display component being contained in Meteor's withTracker.
 
 ## Future Work
 - Clean up what is stored into the database
-- Create API that the client calls to receive data instead of receiving directly from CoinMarketCap's API
 - Add more error handling on backend
 - Write tests
 - Make it responsive
