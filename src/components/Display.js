@@ -1,10 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { withTracker } from 'meteor/react-meteor-data';
 
 import { examplePageNumbers, examplecryptocurrencyData } from '../data/example';
+import { CryptocurrencyData } from '../../imports/api/cryptocurrency.js';
+
 import List from './List.js';
 import Pagination from './Pagination.js';
+
 
 class Display extends Component { 
   constructor(props) { 
@@ -31,7 +35,7 @@ class Display extends Component {
     const indexOfFirstPage = indexOfLastPage - 10;
 
     let data = cryptocurrency[0] ? cryptocurrency[0]['data'] : examplecryptocurrencyData;
-    let lastUpdated = cryptocurrency[0] ? cryptocurrency[0]['lastUpdated'] : '0';
+    let lastUpdated = cryptocurrency[0] ? cryptocurrency[0]['lastUpdated'] : '0000-0-0 00:00:00';
     let currentPages = data.slice(indexOfFirstPage, indexOfLastPage);
     let pageNumbers = [];
 
@@ -58,4 +62,13 @@ class Display extends Component {
   };
 }
 
-export default Display;
+export default withTracker(() => {
+  const cryptocurrencyHandle = Meteor.subscribe('cryptocurrency');
+  const loading = !cryptocurrencyHandle.ready();
+  const cryptocurrency = CryptocurrencyData.find({}, {sort: {'lastUpdated': -1}, limit: 1}).fetch();
+
+  return {
+    loading,
+    cryptocurrency: loading ? [] : cryptocurrency
+  };
+})(Display);
