@@ -6,7 +6,7 @@ export const CryptocurrencyData = new Mongo.Collection('cryptocurrencyData');
 
 if (Meteor.isServer) {
   Meteor.publish('cryptocurrency', function cryptocurrencyPublication() {
-    return CryptocurrencyData.find();
+    return CryptocurrencyData.find()
   });
 }
 
@@ -14,6 +14,7 @@ Meteor.methods({
   'cryptocurrency.get'(lastUpdated) {
     try {
       const { data } = HTTP.get('https://api.coinmarketcap.com/v1/ticker/');
+
       CryptocurrencyData.insert({
         data,
         lastUpdated: lastUpdated

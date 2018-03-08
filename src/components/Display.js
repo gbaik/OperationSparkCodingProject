@@ -11,30 +11,10 @@ class Display extends Component {
     super(props);
   
     this.state = {
-      currentPage: 1,
-      pageNumbers: examplePageNumbers,
-      cryptocurrencyData: examplecryptocurrencyData,
-      lastUpdated: '0'
+      currentPage: 1
     }
 
     this.handlePageClick = this.handlePageClick.bind(this);
-  }
-
-  componentWillReceiveProps() {
-    const { data, lastUpdated } = this.props.cryptocurrency;
-    if (data) {
-      let tempArray = [];
-
-      for (var i = 1; i <= Math.ceil(data.length / 10); i++) {
-        tempArray.push(i);
-      }
-
-      this.setState({
-        pageNumbers: tempArray,         
-        cryptocurrencyData: data,
-        lastUpdated: lastUpdated
-      });
-    }
   }
 
   handlePageClick(pageNumber) {
@@ -44,11 +24,25 @@ class Display extends Component {
   }
 
   render() {
-    const { cryptocurrencyData, currentPage, pageNumbers, lastUpdated } = this.state;
-    
+    const { currentPage } = this.state;
+    const { data, lastUpdated } = this.props.cryptocurrency;
+
     const indexOfLastPage = currentPage * 10;
     const indexOfFirstPage = indexOfLastPage - 10;
-    const currentPages = cryptocurrencyData.slice(indexOfFirstPage, indexOfLastPage);
+    let currentPages = examplecryptocurrencyData.slice(indexOfFirstPage, indexOfLastPage);
+    let pageNumbers = examplePageNumbers;
+
+    if (data) {
+      currentPages = data.slice(indexOfFirstPage, indexOfLastPage);
+      
+      let temp = [];
+
+      for (var i = 1; i <= Math.ceil(data.length / 10); i++) {
+        temp.push(i);
+      }
+
+      pageNumbers = temp;
+    }
 
     return (
       <div className = 'display'>
