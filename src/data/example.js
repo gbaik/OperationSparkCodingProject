@@ -1,4 +1,5 @@
-export const exampleData = [
+export const examplePageNumbers = [1,2,3,4,5,6,7,8,9,10];
+export const examplecryptocurrencyData = [
   {
       "id": "bitcoin", 
       "name": "Bitcoin", 

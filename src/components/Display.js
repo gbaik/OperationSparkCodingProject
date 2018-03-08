@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import { exampleData } from '../data/example';
+import { examplePageNumbers, examplecryptocurrencyData } from '../data/example';
 import List from './List.js';
 import Pagination from './Pagination.js';
 
@@ -11,29 +11,30 @@ class Display extends Component {
     super(props);
   
     this.state = {
-      pageNumbers: [],
       currentPage: 1,
-      cryptocurrencyData: exampleData,
+      pageNumbers: examplePageNumbers,
+      cryptocurrencyData: examplecryptocurrencyData,
       lastUpdated: '0'
     }
 
     this.handlePageClick = this.handlePageClick.bind(this);
   }
 
-  componentDidMount() {
-    // console.log(this.props);
-    // const data = response.data;
-    // let temp = [];
-    
-    // for (var i = 1; i <= Math.ceil(data.length / 10); i++) {
-    //   temp.push(i);
-    // }
+  componentWillReceiveProps() {
+    const { data, lastUpdated } = this.props.cryptocurrency;
+    if (data) {
+      let tempArray = [];
 
-    // this.setState({
-    //   pageNumbers: temp,         
-    //   cryptocurrencyData: data,
-    //   lastUpdated: lastUpdated          
-    // });
+      for (var i = 1; i <= Math.ceil(data.length / 10); i++) {
+        tempArray.push(i);
+      }
+
+      this.setState({
+        pageNumbers: tempArray,         
+        cryptocurrencyData: data,
+        lastUpdated: lastUpdated
+      });
+    }
   }
 
   handlePageClick(pageNumber) {
