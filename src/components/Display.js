@@ -25,19 +25,21 @@ class Display extends Component {
 
   render() {
     const { currentPage } = this.state;
-    const { data, lastUpdated } = this.props.cryptocurrency;
+    const { loading, cryptocurrency } = this.props;
 
     const indexOfLastPage = currentPage * 10;
     const indexOfFirstPage = indexOfLastPage - 10;
     let currentPages = examplecryptocurrencyData.slice(indexOfFirstPage, indexOfLastPage);
     let pageNumbers = examplePageNumbers;
+    let lastUpdated = '0';
 
-    if (data) {
-      currentPages = data.slice(indexOfFirstPage, indexOfLastPage);
-      
+    if (!loading) {
+      currentPages = cryptocurrency[0]['data'].slice(indexOfFirstPage, indexOfLastPage);
+      lastUpdated = cryptocurrency[0]['lastUpdated'];
+
       let temp = [];
 
-      for (var i = 1; i <= Math.ceil(data.length / 10); i++) {
+      for (var i = 1; i <= Math.ceil(cryptocurrency[0]['data'].length / 10); i++) {
         temp.push(i);
       }
 
