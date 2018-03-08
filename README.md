@@ -32,6 +32,7 @@ By: [Gideon Baik](https://github.com/gbaik) (gideonbaik@gmail.com)
   - Every 5 minutes when the CoinMarketCap's API is called from the Meteor's publications and subscriptions methods, the props are updated with the new data through the Display component being contained in Meteor's withTracker.
 
 ## Future Work
+- Update API call to be independent of client
 - Clean up what is stored into the database
 - Add more error handling on backend
 - Write tests
