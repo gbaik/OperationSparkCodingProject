@@ -11,8 +11,8 @@ class Display extends Component {
   constructor(props) { 
     super(props);
     
-    this.port = process.env.port || 5000;
-    this.socket = io(`http://localhost:${this.port}`);
+    // this.port = process.env.port || 5000;
+    // this.socket = io(`http://localhost:${this.port}`);
 
     this.state = {
       pageNumbers: [],
@@ -21,32 +21,33 @@ class Display extends Component {
       lastUpdated: '0'
     }
 
-    this.handlePageClick = this.handlePageClick.bind(this);    
+    this.handlePageClick = this.handlePageClick.bind(this);
+    // console.log(this.props);
   }
 
-  componentDidMount() { 
-    this.socket.on('get_cryptocurrency_data', (lastUpdated) => {
-      Meteor.call('getData', (error, response) => {
-        if (error) {
-          throw err;
-        }
+  componentDidMount() {
+    // this.socket.on('get_cryptocurrency_data', (lastUpdated) => {
+    //   Meteor.call('getData', (error, response) => {
+    //     if (error) {
+    //       throw err;
+    //     }
 
-        const data = response.data;
-        let temp = [];
+    //     const data = response.data;
+    //     let temp = [];
         
-        for (var i = 1; i <= Math.ceil(data.length / 10); i++) {
-          temp.push(i);
-        }
+    //     for (var i = 1; i <= Math.ceil(data.length / 10); i++) {
+    //       temp.push(i);
+    //     }
 
-        this.setState({
-          pageNumbers: temp,         
-          cryptocurrencyData: data,
-          lastUpdated: lastUpdated          
-        });
+    //     this.setState({
+    //       pageNumbers: temp,         
+    //       cryptocurrencyData: data,
+    //       lastUpdated: lastUpdated          
+    //     });
 
-        Meteor.call('cryptocurrencyData.insert', data);      
-      });
-    });
+    //     Meteor.call('cryptocurrencyData.insert', data);      
+    //   });
+    // });
   }
 
   handlePageClick(pageNumber) {
@@ -56,6 +57,8 @@ class Display extends Component {
   }
 
   render() {
+    console.log(this.props);
+
     const { cryptocurrencyData, currentPage, pageNumbers, lastUpdated } = this.state;
     
     const indexOfLastPage = currentPage * 10;
