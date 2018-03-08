@@ -5,7 +5,7 @@ const Pagination = ({ currentPage, handlePageClick, lastUpdated, pageNumbers }) 
     <ul>
       { currentPage > 1 && <div onClick = {() => handlePageClick(currentPage - 1)}> prev </div> }
       {pageNumbers.map(number => (
-        <li onClick = {() => handlePageClick(number) } key = { number }> { number } </li>
+        <li onClick = {() => handlePageClick(number) } key = { number } style = { currentPage === number ? {color: '#FF00FF'} : null }> { number } </li>
       ))}
       { currentPage < pageNumbers.length && <div onClick = {() => handlePageClick(currentPage + 1)}> next </div> }
     </ul>
